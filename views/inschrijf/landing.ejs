@@ -1,0 +1,79 @@
+<%- include('../includes/head.ejs') %>
+
+
+</head>
+
+<body>
+    <div id="app">
+
+        <v-app>
+
+            <v-content>
+
+                <v-container>
+                    <v-stepper v-model="step" vertical>
+                        <v-stepper-header>
+                            <v-stepper-step step="1" :complete="step > 1">Leerling info</v-stepper-step>
+                            <v-divider></v-divider>
+                            <v-stepper-step step="2" :complete="step > 2">Your Address</v-stepper-step>
+                            <v-divider></v-divider>
+                            <v-stepper-step step="3">Misc Info</v-stepper-step>
+                        </v-stepper-header>
+                        <v-stepper-items>
+                            <v-stepper-content step="1">
+                                <v-layout row justify-space-between>
+                                    <v-flex md5>
+                                        <v-text-field :error-messages="errors.collect('Achternaam')" name="Achternaam" v-validate="'required|min:2'" label="Achternaam" v-model="registration.naam"></v-text-field>
+                                    </v-flex>
+                                    <v-flex md5>
+                                        <v-text-field :error-messages="errors.collect('Voornaam')" name="Voornaam" v-validate="'required|min:2'" label="Voornaam" v-model="registration.voornaam">
+                                        </v-text-field>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row>
+                                    <v-flex md6>
+                                            <v-text-field label="E-mail" name="email" v-validate="'required|email'"
+                                            :error-messages="errors.collect('email')" v-model="registration.email">
+                                        </v-text-field>
+                                    </v-flex>
+
+                                </v-layout>
+
+
+                                <v-btn color="primary" @click.native="step = 2">Continue</v-btn>
+                            </v-stepper-content>
+                            <v-stepper-content step="2">
+
+                                <v-text-field label="Street" v-model="registration.street" required></v-text-field>
+                                <v-text-field label="City" v-model="registration.city" required></v-text-field>
+                                <v-text-field label="State" v-model="registration.state" required></v-text-field>
+
+                                <v-btn flat @click.native="step = 1">Previous</v-btn>
+                                <v-btn color="primary" @click.native="step = 3">Continue</v-btn>
+
+                            </v-stepper-content>
+                            <v-stepper-content step="3">
+
+                                <v-text-field label="Number of Tickets" type="number" v-model="registration.numtickets"
+                                    required></v-text-field>
+                                <v-select label="Shirt Size" v-model="registration.shirtsize" :items="sizes" required>
+                                </v-select>
+
+                                <v-btn flat @click.native="step = 2">Previous</v-btn>
+                                <v-btn color="primary" @click.prevent="submit">Save</v-btn>
+
+                            </v-stepper-content>
+                        </v-stepper-items>
+                    </v-stepper>
+
+                </v-container>
+
+            </v-content>
+
+        </v-app>
+
+        <br /><br />Debug: {{registration}}
+
+    </div>
+
+    <%- include('../includes/end.ejs') %>

@@ -1,0 +1,21 @@
+{
+  "name": "sms-inschrijvingsmodule",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
+  },
+  "author": "Raf Vandelaer",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "express-vue": "^5.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  }
+}
