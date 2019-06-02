@@ -1,8 +1,10 @@
+//var richtingen = require('../data/studierichtingen.json');
 
 exports.getIndex = (req, res, next) => {
     res.render('inschrijf/landing', {
       pageTitle: 'ALPHA - Inschrijvingsmodule',
-      path: '/'
+      path: '/',
+      //richtingen: richtingen,
     });
 };
 

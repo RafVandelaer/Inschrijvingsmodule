@@ -13,7 +13,8 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.17.0",
-    "express-vue": "^5.8.2"
+    "express-vue": "^5.8.2",
+    "vee-validate": "^2.2.9"
   },
   "devDependencies": {
     "nodemon": "^1.19.0"

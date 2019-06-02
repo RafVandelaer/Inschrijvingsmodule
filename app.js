@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const errorController = require('./controllers/error');
 
 
-
-
 //const User = require('./models/user');
 const app = express();
 
@@ -28,6 +26,8 @@ app.use((req, res, next) => {
     //console.log("Found");
     next();
 });
+
+
 
 
 

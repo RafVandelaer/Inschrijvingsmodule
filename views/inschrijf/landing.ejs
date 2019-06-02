@@ -46,7 +46,6 @@
                                         v-model="menu"
                                         :close-on-content-click="false"
                                         :nudge-right="40"
-                                        :return-value.sync="date"
                                         lazy
                                         transition="scale-transition"
                                         offset-y
@@ -56,17 +55,30 @@
                                         <template v-slot:activator="{ on }">
                                           <v-text-field
                                             v-model="registration.geboortedatum"
-                                            label="geboortedatum"
+                                            label="Geboortedatum"
+                                            prepend-icon="event"
+                                            name="birthPicker"
                                             readonly
                                             v-on="on"
                                           ></v-text-field>
                                         </template>
-                                        <v-date-picker v-model="date" no-title scrollable>
-                                          <v-spacer></v-spacer>
-                                          <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
-                                          <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
-                                        </v-date-picker>
+                                        <v-date-picker
+                                          ref="picker"
+                                          v-model="registration.geboortedatum"
+                                          :max="new Date().toISOString().substr(0, 10)"
+                                          min="1950-01-01"
+                                          @change="$refs.menu.save(registration.geboortedatum)"
+                                        ></v-date-picker>
                                       </v-menu>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row justify-space-between>
+                                    <v-flex md5>
+                                        <v-select
+                                        v-bind:items="richtingen"
+                                        label="Studierichting"
+                                        v-model="registration.studierichting"
+                                    ></v-select>
                                     </v-flex>
                                 </v-layout>
 
