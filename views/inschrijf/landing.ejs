@@ -81,6 +81,16 @@
                                     ></v-select>
                                     </v-flex>
                                 </v-layout>
+                                <v-layout row justify-space-between>
+                                    <v-flex md5>
+                                        <v-select
+                                        v-bind:items="extraVakken"
+                                        label="Extra vak"
+                                        v-model="registration.extravak"
+                                        v-if="heeftExtraVak()"
+                                    ></v-select>
+                                    </v-flex>
+                                </v-layout>
 
                                 <!--:disabled="errors.any()" -->
                                 <v-btn color="primary" @click.native="step = 2"

@@ -4,7 +4,10 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://unpkg.com/vuetify/dist/vuetify.min.js"></script>
 <script>
-        Vue.use(VeeValidate); // good to go.
+        Vue.use(VeeValidate, {
+          locale: 'nl'}
+        ); // good to go.
+        
       </script>
 <script type="module" src="/js/main.js"></script>
 <script type="module" src="/js/vue-app.js"></script>

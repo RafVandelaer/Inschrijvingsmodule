@@ -13,10 +13,13 @@ const app = new Vue({
           voornaam: "",
           achternaam: "",
           email: "",
+          studierichting: "",
+          extravak: "",
           //geboortedatum: new Date().toISOString().substr(0, 10),
         },
         menu: false,
         richtingen: richtingen(),
+        extraVakken: ["Vak1","Vak2", "Vak3"]
       }
     },
     methods:{
@@ -28,15 +31,23 @@ const app = new Vue({
       },
       submit() {
         alert('Submit to blah and show blah and etc.');      
+      },
+      heeftExtraVak(){
+        if(this.registration.studierichting.includes("1A")){
+          return true;
+        }
       }
     },
     computed:{
       firstStepComplete(){
-        return  !(this.registration.email && this.registration.achternaam && this.registration.voornaam && this.registration.studierichting && this.registration.geboortedatum);
+        if(this.heeftExtraVak()){
+          return  !(this.registration.email && this.registration.achternaam && this.registration.voornaam && this.registration.studierichting && this.registration.geboortedatum && this.registration.extravak);
+        }else{
+          return  !(this.registration.email && this.registration.achternaam && this.registration.voornaam && this.registration.studierichting && this.registration.geboortedatum);
+        }
+        
       },
-      heeftExtraVak(){
-        return 
-      }
+    
     },
      watch: {
       menu (val) {
