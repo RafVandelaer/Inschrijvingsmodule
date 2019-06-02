@@ -23,24 +23,56 @@
                             <v-stepper-content step="1">
                                 <v-layout row justify-space-between>
                                     <v-flex md5>
-                                        <v-text-field :error-messages="errors.collect('Achternaam')" name="Achternaam" v-validate="'required|min:2'" label="Achternaam" v-model="registration.naam"></v-text-field>
+                                        <v-text-field :error-messages="errors.collect('achternaam')" name="achternaam"
+                                            v-validate="'required|min:2'" label="Achternaam"
+                                            v-model="registration.achternaam"></v-text-field>
                                     </v-flex>
                                     <v-flex md5>
-                                        <v-text-field :error-messages="errors.collect('Voornaam')" name="Voornaam" v-validate="'required|min:2'" label="Voornaam" v-model="registration.voornaam">
+                                        <v-text-field :error-messages="errors.collect('voornaam')" name="voornaam"
+                                            v-validate="'required|min:2'" label="Voornaam"
+                                            v-model="registration.voornaam">
                                         </v-text-field>
                                     </v-flex>
                                 </v-layout>
-                                <v-layout row>
-                                    <v-flex md6>
-                                            <v-text-field label="E-mail" name="email" v-validate="'required|email'"
+                                <v-layout row justify-space-between>
+                                    <v-flex md5>
+                                        <v-text-field label="E-mail" name="email" v-validate="'required|email'"
                                             :error-messages="errors.collect('email')" v-model="registration.email">
                                         </v-text-field>
                                     </v-flex>
-
+                                    <v-flex md5>
+                                        <v-menu
+                                        ref="menu"
+                                        v-model="menu"
+                                        :close-on-content-click="false"
+                                        :nudge-right="40"
+                                        :return-value.sync="date"
+                                        lazy
+                                        transition="scale-transition"
+                                        offset-y
+                                        full-width
+                                        min-width="290px"
+                                      >
+                                        <template v-slot:activator="{ on }">
+                                          <v-text-field
+                                            v-model="registration.geboortedatum"
+                                            label="geboortedatum"
+                                            readonly
+                                            v-on="on"
+                                          ></v-text-field>
+                                        </template>
+                                        <v-date-picker v-model="date" no-title scrollable>
+                                          <v-spacer></v-spacer>
+                                          <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                                          <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                                        </v-date-picker>
+                                      </v-menu>
+                                    </v-flex>
                                 </v-layout>
 
-
-                                <v-btn color="primary" @click.native="step = 2">Continue</v-btn>
+                                <!--:disabled="errors.any()" -->
+                                <v-btn color="primary" @click.native="step = 2"
+                                    :disabled="firstStepComplete || errors.any()">Volgende stap</v-btn>
                             </v-stepper-content>
                             <v-stepper-content step="2">
 
@@ -56,7 +88,7 @@
 
                                 <v-text-field label="Number of Tickets" type="number" v-model="registration.numtickets"
                                     required></v-text-field>
-                                <v-select label="Shirt Size" v-model="registration.shirtsize" :items="sizes" required>
+                                <v-select label="Shirt Size" v-model="registration.shirtsize" required>
                                 </v-select>
 
                                 <v-btn flat @click.native="step = 2">Previous</v-btn>

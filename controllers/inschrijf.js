@@ -1,11 +1,14 @@
 
 exports.getIndex = (req, res, next) => {
     res.render('inschrijf/landing', {
-      pageTitle: 'Shop',
+      pageTitle: 'ALPHA - Inschrijvingsmodule',
       path: '/'
     });
 };
 
+exports.postFirstStep = (req, res, next) => {
+  //TODO
+};
 
 exports.getAddProduct = (req, res, next) => {
  /* res.render('admin/edit-product', {

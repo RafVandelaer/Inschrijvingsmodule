@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/', inschrijfController.getIndex);
 
+router.get('/set-first-step', inschrijfController.postFirstStep);
+
 //router.get('/edit-product/:productId', inschrijfController.getEditProduct);
 
 //router.post('/delete-product', inschrijfController.postDeleteProduct);
