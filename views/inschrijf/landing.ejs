@@ -23,6 +23,21 @@
                             <v-stepper-content step="1">
                                 <v-layout row justify-space-between>
                                     <v-flex md5>
+                                            <v-btn
+                                            :loading="loading4"
+                                            :disabled="loading4"
+                                            color="success"
+                                            @click="readID"
+                                          >
+                                            Custom Loader
+                                            <template v-slot:loader>
+                                              <span>Loading...</span>
+                                            </template>
+                                          </v-btn>
+                                    </v-flex>
+                                </v-layout>
+                                <v-layout row justify-space-between>
+                                    <v-flex md5>
                                         <v-text-field :error-messages="errors.collect('achternaam')" name="achternaam"
                                             v-validate="'required|min:2'" label="Achternaam"
                                             v-model="registration.achternaam"></v-text-field>

@@ -1,4 +1,5 @@
-import {richtingen} from '/studierichtingen.js'
+import {richtingen} from '/studierichtingen.js';
+
 //import { Validator } from '/vee-validate';
 
 
@@ -19,7 +20,9 @@ const app = new Vue({
         },
         menu: false,
         richtingen: richtingen(),
-        extraVakken: ["Vak1","Vak2", "Vak3"]
+        extraVakken: ["Vak1","Vak2","Vak3"],
+        loading4: false
+
       }
     },
     methods:{
@@ -36,6 +39,27 @@ const app = new Vue({
         if(this.registration.studierichting.includes("1A")){
           return true;
         }
+      },
+      readID() {
+        this.loading4 = true;
+        //console.log("running");
+        //header('Access-Control-Allow-Origin: *');
+        axios.get("http://localhost:55515/eid", {
+          method: 'GET',
+         /* headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json',
+          },*/
+          withCredentials: false,
+        })
+        .then((response)  =>  {
+          this.loading4 = false;
+         console.log(response)
+        }, (error)  =>  {
+          this.loading4 = false;
+          console.log(response)
+      })
+
       }
     },
     computed:{
@@ -52,7 +76,8 @@ const app = new Vue({
      watch: {
       menu (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
-      }
+      },
+
     },
   });
 
